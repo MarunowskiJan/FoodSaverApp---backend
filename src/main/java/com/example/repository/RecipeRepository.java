@@ -12,4 +12,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
 	Optional<Recipe> findRecipeById(Long id);
 
+	Recipe findTopByOrderByIdDesc();
 }

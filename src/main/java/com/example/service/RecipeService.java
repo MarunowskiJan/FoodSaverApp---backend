@@ -39,4 +39,8 @@ public class RecipeService {
 	public void deleteRecipe(Long id) {
 		recipeRepository.deleteRecipeById(id);
 	}
+
+	public Recipe findlastRecipeInRepository() {
+		return recipeRepository.findTopByOrderByIdDesc();
+	}
 }

@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,14 +32,12 @@ public class RecipeController {
 	public ResponseEntity<List<Recipe>> getAllRecipes() {
 		List<Recipe> recipes = recipeService.findAllRecipes();
 		return new ResponseEntity<>(recipes, HttpStatus.OK);
-
 	}
 
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Recipe> getRecipeById(@PathVariable("id") Long id) {
 		Recipe recipe = recipeService.findRecipeById(id);
 		return new ResponseEntity<>(recipe, HttpStatus.OK);
-
 	}
 
 	@PostMapping("/add")
@@ -59,22 +58,19 @@ public class RecipeController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-//	@PutMapping("/{recipeId}/ingredient/{ingredientId}")
-//	public ResponseEntity<Recipe> enrollIngredientToRecipe(@PathVariable("recipeId") Long recipeId,
-//			@PathVariable("ingredientId") Long ingredientId) {
-//		Recipe recipe = recipeService.findRecipeById(recipeId);
-//		Ingredient ingredient = ingredientService.findIngredientById(ingredientId);
-//		recipe.enrollIngredient(ingredient);
-//		Recipe _recipe = recipeService.addRecipe(recipe);
-//		return new ResponseEntity<>(_recipe,HttpStatus.OK);
-//	}
+	@GetMapping("/last")
+	public ResponseEntity<Recipe> checkLastRecipe() {
+		Recipe last = recipeService.findlastRecipeInRepository();
+		return new ResponseEntity<Recipe>(last, HttpStatus.OK);
+	}
 
 	@PutMapping("/{recipeId}/ingredient/{ingredientId}")
-	Recipe enrollIngredientToRecipe(@PathVariable("recipeId") Long recipeId,
+	public ResponseEntity<Recipe> enrollIngredientToRecipe(@PathVariable("recipeId") Long recipeId,
 			@PathVariable("ingredientId") Long ingredientId) {
 		Recipe recipe = recipeService.findRecipeById(recipeId);
 		Ingredient ingredient = ingredientService.findIngredientById(ingredientId);
 		recipe.enrollIngredient(ingredient);
-		return recipeService.addRecipe(recipe);
+		Recipe _recipe = recipeService.addRecipe(recipe);
+		return new ResponseEntity<>(_recipe, HttpStatus.OK);
 	}
 }

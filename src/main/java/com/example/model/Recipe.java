@@ -10,12 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "recipe")
 public class Recipe {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_sequence")
+	@SequenceGenerator(name = "recipe_sequence", initialValue = 31, allocationSize = 1)
 	@Column(nullable = false, updatable = false)
 	private Long id;
 	private String name;

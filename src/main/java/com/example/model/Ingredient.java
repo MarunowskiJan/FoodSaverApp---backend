@@ -8,12 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "ingredient")
 public class Ingredient {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredient_sequence")
+	@SequenceGenerator(name = "ingredient_sequence", initialValue = 111, allocationSize = 1)
 	@Column(nullable = false, updatable = false)
 	private Long id;
 	private String name;
@@ -27,12 +31,12 @@ public class Ingredient {
 
 	}
 
-	public Ingredient(Long id,String name, String imageUrl) {
+	public Ingredient(Long id, String name, String imageUrl) {
 		this.id = id;
 		this.name = name;
 		this.imageUrl = imageUrl;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}

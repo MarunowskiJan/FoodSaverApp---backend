@@ -1,0 +1,35 @@
+spring:
+   jpa:
+      defer-datasource-initialization: true # Inicjalizacja najpierw hibernate pozniej schema-h2.sql
+      show-sql: true # wyświetla zapytania do bazy w konsoli
+      hibernate:
+         ddl-auto: create-drop
+   sql:
+    init:
+      platform: h2
+      schema-locations: classpath:/db/schema-h2.sql
+      data-locations: classpath:/db/common-data-h2.sql
+
+   autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+   datasource:
+    url: jdbc:h2:mem:db;NON_KEYWORDS=KEY,DAY  
+
+controller:
+  layer:
+    test: true
+
+pl:
+  gs:
+    swi:
+      dispatcher:
+        hostKeysMap: "{syzyfIntegration: 'http://localhost:8481', swiManagement : 'http://localhost:8480'}"   
+
+
+swi:
+  integration:
+    consumer:
+      client:
+        url: http://localhost:8680
+  
+
