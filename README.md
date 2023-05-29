@@ -8,7 +8,8 @@ API of the FoodSaverApp, which was made in Spring Boot and Java.
 
 ## Where I can find all endpoints
 Enter this url in browser: http://localhost:8080/swagger-ui/index.html#/
-![alt_text](![image](https://github.com/MarunowskiJan/FoodSaverApp---backend/assets/51335901/437e7283-ce08-47a9-a817-efba1892d231))
+![image](https://github.com/MarunowskiJan/FoodSaverApp---backend/assets/51335901/663bbd5d-6418-4c71-b2ae-f96fb073c2c3)
+
 
 ## User Stories
 - The frontend is able to create, read, update, delete the recipes or ingredients from database using this API.
